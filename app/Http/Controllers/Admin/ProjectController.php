@@ -47,6 +47,7 @@ class ProjectController extends Controller
         $data = $request->all();
         $new_project = new Project;
         $new_project->fill($data);
+        $img_path = Storage::put('uploads', $data['image']);
         $new_project->save();
 
         return redirect()->route('admin.projects.show', $new_project)->with('message', 'Progetto creato con successo');

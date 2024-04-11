@@ -18,6 +18,7 @@ class ProjectSeeder extends Seeder
     {
         $project = new Project;
         $project->title;
+        $project->image_url;
         $project->slug = Str::slug($project->title);
         $project->type_id;
         $project->description;
