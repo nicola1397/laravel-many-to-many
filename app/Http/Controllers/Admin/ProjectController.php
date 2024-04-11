@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
+use App\Mail\CreatedProject;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -46,11 +48,15 @@ class ProjectController extends Controller
 
         $data = $request->all();
         $new_project = new Project;
+        $new_project->image_url = Storage::put('uploads/projects', $data['image']);
         $new_project->fill($data);
-        $img_path = Storage::put('uploads', $data['image']);
         $new_project->save();
 
+        Mail::to('utente@mail.it')->send(new CreatedProject());
+
+
         return redirect()->route('admin.projects.show', $new_project)->with('message', 'Progetto creato con successo');
+
     }
 
     /**
@@ -91,6 +97,8 @@ class ProjectController extends Controller
         $data = $request->all();
         $project->update($data);
         return redirect()->route('admin.projects.show', compact('project'))->with('message', 'Progetto modificato con successo');
+
+
     }
 
     /**

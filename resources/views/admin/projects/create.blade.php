@@ -8,7 +8,7 @@
 
         <h1 class="mb-3">Crea un nuovo progetto</h1>
 
-        <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
+        <form enctype="multipart/form-data" action="{{ route('admin.projects.store') }}" method="POST" >
             @csrf
 
             <div class="row g-3">
@@ -44,6 +44,14 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+    
+                <!-- FILE UPLOAD -->
+                    
+                <div class="mb-3">
+                <label for="image" class="form-label">Inserisci immagine</label>
+                <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                </div>
+
 
                 <div class="col-2">
                     <button class="btn btn-success">Salva</button>

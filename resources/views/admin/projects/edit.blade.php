@@ -51,6 +51,14 @@
                     @enderror
                 </div>
 
+                   <!-- FILE UPLOAD -->
+             <div>
+                <div class="mb-3">
+  <label for="image" class="form-label">Inserisci immagine</label>
+  <input class="form-control" type="file" id="image" name="image" >
+</div>
+            </div>
+
                 <div class="col-2">
                     <button class="btn btn-success">Salva</button>
                 </div>
